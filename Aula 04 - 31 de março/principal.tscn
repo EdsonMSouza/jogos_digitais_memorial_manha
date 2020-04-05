@@ -1,0 +1,71 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://icon.png" type="Texture" id=1]
+[ext_resource path="res://personagem.gd" type="Script" id=2]
+[ext_resource path="res://assets/dano.wav" type="AudioStream" id=3]
+[ext_resource path="res://assets/game_over.wav" type="AudioStream" id=4]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 29.0121, 26.7656 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 29.9015, 28.044 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 29.6869, 27.8062 )
+
+[node name="principal" type="Node2D"]
+
+[node name="obstaculo" type="StaticBody2D" parent="."]
+modulate = Color( 0.792157, 0.109804, 0.109804, 1 )
+position = Vector2( 534.869, 279.678 )
+collision_layer = 4
+collision_mask = 4
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="colisao" type="CollisionShape2D" parent="obstaculo"]
+position = Vector2( 0, -0.203907 )
+shape = SubResource( 1 )
+
+[node name="skin" type="Sprite" parent="obstaculo"]
+texture = ExtResource( 1 )
+
+[node name="personagem" type="KinematicBody2D" parent="."]
+position = Vector2( 278.685, 64.7442 )
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="skin" type="Sprite" parent="personagem"]
+texture = ExtResource( 1 )
+
+[node name="colisao" type="CollisionShape2D" parent="personagem"]
+shape = SubResource( 2 )
+
+[node name="Area2D" type="Area2D" parent="personagem"]
+collision_layer = 4
+collision_mask = 4
+
+[node name="colisao" type="CollisionShape2D" parent="personagem/Area2D"]
+shape = SubResource( 3 )
+
+[node name="Timer" type="Timer" parent="personagem"]
+wait_time = 2.0
+
+[node name="dano" type="AudioStreamPlayer" parent="personagem"]
+stream = ExtResource( 3 )
+
+[node name="morreu" type="AudioStreamPlayer" parent="personagem"]
+stream = ExtResource( 4 )
+
+[node name="placar" type="Label" parent="."]
+margin_left = 22.6396
+margin_top = 22.8019
+margin_right = 165.64
+margin_bottom = 48.8019
+[connection signal="body_entered" from="personagem/Area2D" to="personagem" method="_on_Area2D_body_entered"]
+[connection signal="timeout" from="personagem/Timer" to="personagem" method="_on_Timer_timeout"]
+[connection signal="finished" from="personagem/morreu" to="personagem" method="_on_morreu_finished"]
