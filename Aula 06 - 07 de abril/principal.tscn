@@ -1,0 +1,58 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://motor.wav" type="AudioStream" id=1]
+[ext_resource path="res://icon.png" type="Texture" id=2]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends KinematicBody2D
+
+# carrega o player no início da cena
+onready var motor = $player
+
+export(int) var speed = 200
+var velocity = Vector2()
+
+func get_input():
+	velocity = Vector2()
+	
+	if Input.is_action_pressed('ui_right'):
+		velocity.x += 1	
+		# verifica se o motor está desligado. Se estiver, liga (.play())
+		if(!motor.playing):
+			motor.play()
+			
+	# lógica para parar o montor quando uma tecla é liberada.
+	# Se foi liberada, para o motor (.stop())
+	if Input.is_action_just_released('ui_right'):	
+		motor.stop()
+		
+	if Input.is_action_pressed('ui_left'):
+		velocity.x -= 1
+	if Input.is_action_pressed('ui_down'):
+		velocity.y += 1
+	if Input.is_action_pressed('ui_up'):
+		velocity.y -= 1
+	velocity = velocity.normalized() * speed
+
+	return velocity
+
+func _physics_process(delta):
+	get_input()
+	velocity = move_and_slide(velocity)
+
+"
+
+[node name="principal" type="Node2D"]
+
+[node name="personagem" type="KinematicBody2D" parent="."]
+script = SubResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="personagem"]
+position = Vector2( 304, 144 )
+texture = ExtResource( 2 )
+
+[node name="player" type="AudioStreamPlayer" parent="personagem"]
+stream = ExtResource( 1 )
