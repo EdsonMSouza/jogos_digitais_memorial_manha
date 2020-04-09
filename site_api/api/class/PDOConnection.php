@@ -15,7 +15,7 @@ class PDOConnection
 
     # PDO config vars - configurações da conexão com o banco de dados
     private static $db_type = 'mysql';
-    private static $db_hostname = '';
+    private static $db_hostname = 'fdb22.awardspace.net';
     private static $db_name = '';
     private static $db_user = '';
     private static $db_password = '';

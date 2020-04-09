@@ -42,7 +42,7 @@ class UserModel
             $stmt->bindValue(":user", $user, \PDO::PARAM_STR);
             $stmt->bindValue(":password", $password, \PDO::PARAM_STR);
 
-            # executa a pesquisa no banco de dados
+            # executa a inserção do registro no banco de dados
             $stmt->execute();
 
             return true;
@@ -81,10 +81,21 @@ class UserModel
     }
 
     /**
-     * Métodos para manipulação dos dados de login
-     * Uma ideia de implementação seria criptografar a senha
+     * Método que retorna TODOS os usuários cadastrados no banco
+     * 
      */
     public function users()
     {
+        try {
+            $sql = "SELECT user FROM users ORDER BY name ASC";
+            $stmt = self::$pdo->prepare($sql);
+            $stmt->execute();
+
+            # retorna o conjunto de dados dos usuários
+            return $stmt->fetchAll(\PDO::FETCH_OBJ);
+
+        } catch (PDOException $ex) {
+            throw $ex;
+        }
     }
 }
