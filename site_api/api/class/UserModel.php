@@ -53,6 +53,33 @@ class UserModel
     }
 
     /**
+     * Método para verificar se um usuário já existe, se sim, retorna TRUE
+     */
+    public function userExists($user)
+    {
+        try {
+            # variável para armazenar a String SQL
+            $sql = "SELECT user FROM users 
+                    WHERE user = :user";
+
+            # variável para armazenar o objeto da conexão que será utilizado para executar as operações
+            $stmt = self::$pdo->prepare($sql);
+
+            # atribuição dos valores informados para os parâmetros SQL
+            $stmt->bindValue(":user", $user, \PDO::PARAM_STR);
+
+            # executa a pesquisa no banco de dados
+            $stmt->execute();
+
+            # retorna um objeto - o tratamento deve ser feito no Controller para verificar se há dados retornados
+            return $stmt->fetch(\PDO::FETCH_OBJ);
+        } catch (PDOException $ex) {
+            # gera uma exceção (Exception) se ocorreu algum erro na interação com o banco de dados
+            throw $ex;
+        }
+    }
+
+    /**
      * Métodos para manipulação dos dados de login
      * Uma ideia de implementação seria criptografar a senha
      */
@@ -60,7 +87,8 @@ class UserModel
     {
         try {
             # variável para armazenar a String SQL
-            $sql = "SELECT id, name FROM users WHERE user = :user AND password = :password";
+            $sql = "SELECT id, name FROM users 
+                    WHERE user = :user AND password = :password";
 
             # variável para armazenar o objeto da conexão que será utilizado para executar as operações
             $stmt = self::$pdo->prepare($sql);
@@ -93,7 +121,6 @@ class UserModel
 
             # retorna o conjunto de dados dos usuários
             return $stmt->fetchAll(\PDO::FETCH_OBJ);
-
         } catch (PDOException $ex) {
             throw $ex;
         }
