@@ -8,6 +8,7 @@
 *
 */
 
+
 class PDOConnection
 {
     # Connection instance
