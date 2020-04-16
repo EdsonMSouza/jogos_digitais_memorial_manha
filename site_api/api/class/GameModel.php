@@ -33,10 +33,10 @@ class GameModel
     function save($idGame, $score)
     {
         try {
-            $sql = "UPDATE games SET score = : score WHERE id = :idGame";
+            $sql = "UPDATE games SET score = :score WHERE id = :idGame";
             $stmt = self::$pdo->prepare($sql);
             $stmt->bindValue(":score", $score, \PDO::PARAM_INT);
-            $stmt->bindValue(":id", $idGame, \PDO::PARAM_INT);
+            $stmt->bindValue(":idGame", $idGame, \PDO::PARAM_INT);
             $stmt->execute();
 
             # verificar se foi realmente atualizado
@@ -62,13 +62,37 @@ class GameModel
                     INNER JOIN users 
                     ON games.user_id = users.id 
                     GROUP BY users.name 
+                    HAVING Score > 0 
                     ORDER BY games.score DESC';
 
             $stmt = self::$pdo->prepare($sql);
             $stmt->execute();
 
             return $stmt->fetchAll(\PDO::FETCH_OBJ);
+        } catch (PDOException $ex) {
+            throw $ex;
+        }
+    }
 
+    /**
+     * Ranking por jogador 
+     */
+    public function rankingByPlayer($userId)
+    {
+        try {
+            $sql = "SELECT users.user AS User, games.id AS IDGame, games.score AS Score
+                    FROM games 
+                    INNER JOIN users 
+                    ON games.user_id = users.id 
+                    WHERE games.user_id = :userId 
+                    HAVING Score > 0 
+                    ORDER BY games.score DESC";
+
+            $stmt = self::$pdo->prepare($sql);
+            $stmt->bindValue(":userId", $userId, \PDO::PARAM_INT);
+            $stmt->execute();
+
+            return $stmt->fetchAll(\PDO::FETCH_OBJ);
         } catch (PDOException $ex) {
             throw $ex;
         }
