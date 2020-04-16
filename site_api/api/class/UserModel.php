@@ -87,7 +87,7 @@ class UserModel
     {
         try {
             # variável para armazenar a String SQL
-            $sql = "SELECT id, name FROM users 
+            $sql = "SELECT id, user, name FROM users 
                     WHERE user = :user AND password = :password";
 
             # variável para armazenar o objeto da conexão que será utilizado para executar as operações
