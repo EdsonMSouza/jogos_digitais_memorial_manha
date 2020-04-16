@@ -3,7 +3,7 @@
 # envia os dados para API
 $array = array("type" => "ranking_general");
 $json = json_encode($array);
-$ch = curl_init('colocar a URL da API aqui');
+$ch = curl_init('http://apijogosdigitais.atwebpages.com/api/game.php');
 curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
 curl_setopt($ch, CURLOPT_POSTFIELDS, $json);
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
@@ -17,6 +17,7 @@ if ($obj === null && json_last_error() !== JSON_ERROR_NONE) {
     echo json_encode(["Mensagem:" => "Incorrect Request"]);
     die();
 }
+
 ?>
 
 <!DOCTYPE html>
@@ -51,13 +52,14 @@ if ($obj === null && json_last_error() !== JSON_ERROR_NONE) {
                 # percore o objeto JSON e mostra os dados
                 $contador = 1;
                 foreach ($obj as $scores) {
-                    foreach ($scores as $values) {
-                        print("<tr>");
-                        print("<td>" . $contador++ . "</td>");
-                        print("<td>" . $values->User . "</td>");
-                        print("<td class=\"text-right\">" . $values->Score . "</td>");
-                    }
+                	foreach ($scores as $values) {
+                
+                    print("<tr>");
+                    print("<td>" . $contador++ . "</td>");
+                    print("<td>" . $values->User . "</td>");
+                    print("<td class=\"text-right\">" . $values->Score . "</td>");
                 }
+            }
                 ?>
             </table>
         </div>
