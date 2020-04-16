@@ -85,4 +85,3 @@ switch ($obj->type) {
         print(json_encode(["Mensagem:" => "Invalid data"]));
         break;
 }
-
