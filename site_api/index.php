@@ -3,7 +3,7 @@
 # envia os dados para API
 $array = array("type" => "ranking_general");
 $json = json_encode($array);
-$ch = curl_init('http://apijogosdigitais.atwebpages.com/api/game.php');
+$ch = curl_init('Aqui vai a URL da API');
 curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
 curl_setopt($ch, CURLOPT_POSTFIELDS, $json);
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
