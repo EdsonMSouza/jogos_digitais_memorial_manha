@@ -1,0 +1,75 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://scripts/painel_jogo.gd" type="Script" id=1]
+[ext_resource path="res://fonts/AwakenningPersonalUse-DOLPD.ttf" type="DynamicFontData" id=2]
+
+[sub_resource type="DynamicFont" id=1]
+size = 60
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 70
+extra_spacing_bottom = -25
+font_data = ExtResource( 2 )
+
+[node name="painel_jogo" type="Node2D"]
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_vertical_guides_": [ 512.38 ]
+}
+
+[node name="user_name" type="Label" parent="."]
+margin_left = 1.0
+margin_top = 5.0
+margin_right = 1024.0
+margin_bottom = 101.0
+custom_fonts/font = SubResource( 1 )
+align = 1
+valign = 1
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="novo_jogo" type="Button" parent="."]
+modulate = Color( 0.419608, 0.819608, 0.482353, 1 )
+margin_left = 389.975
+margin_top = 226.0
+margin_right = 634.975
+margin_bottom = 296.0
+focus_mode = 0
+custom_fonts/font = SubResource( 2 )
+enabled_focus_mode = 0
+text = "NOVO JOGO"
+flat = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ranking_geral" type="Button" parent="."]
+margin_left = 345.809
+margin_top = 364.708
+margin_right = 680.809
+margin_bottom = 434.708
+focus_mode = 0
+custom_fonts/font = SubResource( 2 )
+enabled_focus_mode = 0
+text = "ranking geral"
+flat = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ranking_usuario" type="Button" parent="."]
+margin_left = 319.975
+margin_top = 502.157
+margin_right = 705.975
+margin_bottom = 572.157
+focus_mode = 0
+custom_fonts/font = SubResource( 2 )
+enabled_focus_mode = 0
+text = "ranking usuario"
+flat = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
