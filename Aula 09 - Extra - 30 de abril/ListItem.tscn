@@ -1,0 +1,32 @@
+[gd_scene format=2]
+
+[node name="Panel" type="Panel"]
+margin_left = 18.0
+margin_top = 17.0
+margin_right = 618.0
+margin_bottom = 63.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="sequencia" type="Label" parent="."]
+margin_left = 8.59164
+margin_top = 11.1911
+margin_right = 108.592
+margin_bottom = 36.1911
+text = "#"
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="descricao" type="Label" parent="."]
+margin_left = 112.981
+margin_top = 11.191
+margin_right = 589.981
+margin_bottom = 36.191
+text = "texto"
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}

@@ -1,0 +1,29 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Panel.gd" type="Script" id=1]
+
+[node name="placar" type="Node2D"]
+
+[node name="Panel" type="Panel" parent="."]
+margin_left = 10.2053
+margin_top = 41.5298
+margin_right = 630.205
+margin_bottom = 465.53
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Panel"]
+margin_left = 3.0
+margin_top = 6.0
+margin_right = 617.0
+margin_bottom = 417.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="list" type="VBoxContainer" parent="Panel/ScrollContainer"]
+
+[node name="HTTPRequest" type="HTTPRequest" parent="Panel"]
+[connection signal="request_completed" from="Panel/HTTPRequest" to="Panel" method="_on_HTTPRequest_request_completed"]
