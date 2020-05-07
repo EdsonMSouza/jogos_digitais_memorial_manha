@@ -1,0 +1,127 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://scripts/painel_jogo.gd" type="Script" id=1]
+[ext_resource path="res://fonts/Azonix.otf" type="DynamicFontData" id=2]
+
+[sub_resource type="DynamicFont" id=1]
+size = 30
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 40
+extra_spacing_bottom = -10
+font_data = ExtResource( 2 )
+
+[node name="painel_jogo" type="Node2D"]
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_vertical_guides_": [ 512.38 ]
+}
+
+[node name="ColorRect" type="ColorRect" parent="."]
+modulate = Color( 0, 0, 0, 1 )
+margin_right = 1023.0
+margin_bottom = 600.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="user_name" type="Label" parent="."]
+margin_left = 1.0
+margin_top = 5.0
+margin_right = 1024.0
+margin_bottom = 101.0
+custom_fonts/font = SubResource( 1 )
+align = 1
+valign = 1
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="novo_jogo" type="Button" parent="."]
+modulate = Color( 0.419608, 0.819608, 0.482353, 1 )
+margin_left = 274.732
+margin_top = 149.958
+margin_right = 751.732
+margin_bottom = 219.958
+focus_mode = 0
+custom_fonts/font = SubResource( 2 )
+enabled_focus_mode = 0
+text = "NOVO JOGO"
+flat = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ranking_geral" type="Button" parent="."]
+margin_left = 187.812
+margin_top = 247.79
+margin_right = 836.812
+margin_bottom = 317.79
+focus_mode = 0
+custom_fonts/font = SubResource( 2 )
+enabled_focus_mode = 0
+text = "ranking geral"
+flat = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ranking_usuario" type="Button" parent="."]
+margin_left = 149.529
+margin_top = 351.836
+margin_right = 873.529
+margin_bottom = 421.836
+focus_mode = 0
+custom_fonts/font = SubResource( 2 )
+enabled_focus_mode = 0
+text = "ranking usuario"
+flat = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Popup" type="Popup" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+popup_exclusive = true
+
+[node name="sair" type="Button" parent="."]
+modulate = Color( 1, 0.0941176, 0, 1 )
+margin_left = 303.0
+margin_top = 508.0
+margin_right = 499.0
+margin_bottom = 581.0
+focus_mode = 0
+custom_fonts/font = SubResource( 2 )
+enabled_focus_mode = 0
+text = "Sair"
+flat = true
+align = 0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="logout" type="Button" parent="."]
+modulate = Color( 1, 0.0941176, 0, 1 )
+margin_left = 527.0
+margin_top = 509.0
+margin_right = 722.0
+margin_bottom = 579.0
+focus_mode = 0
+custom_fonts/font = SubResource( 2 )
+enabled_focus_mode = 0
+text = "Logout"
+flat = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HTTPRequest" type="HTTPRequest" parent="."]
+[connection signal="pressed" from="novo_jogo" to="." method="_on_novo_jogo_pressed"]
+[connection signal="pressed" from="ranking_geral" to="." method="_on_ranking_geral_pressed"]
+[connection signal="pressed" from="ranking_usuario" to="." method="_on_ranking_usuario_pressed"]
+[connection signal="pressed" from="sair" to="." method="_on_sair_pressed"]
+[connection signal="pressed" from="logout" to="." method="_on_logout_pressed"]
+[connection signal="request_completed" from="HTTPRequest" to="." method="_on_HTTPRequest_request_completed"]

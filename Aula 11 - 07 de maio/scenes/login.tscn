@@ -1,0 +1,143 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://scripts/login_api.gd" type="Script" id=1]
+[ext_resource path="res://fonts/Azonix.otf" type="DynamicFontData" id=2]
+
+[sub_resource type="DynamicFont" id=1]
+size = 40
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 20
+extra_spacing_bottom = -3
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=4]
+size = 20
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 20
+extra_spacing_top = 2
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=5]
+size = 14
+font_data = ExtResource( 2 )
+
+[node name="login" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="ColorRect" type="ColorRect" parent="."]
+modulate = Color( 0, 0, 0, 1 )
+margin_right = 1023.0
+margin_bottom = 600.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="titulo" type="Label" parent="."]
+margin_left = 2.0
+margin_top = 72.0
+margin_right = 1019.0
+margin_bottom = 123.0
+custom_fonts/font = SubResource( 1 )
+text = "Tela de Login"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="label_usuario" type="Label" parent="."]
+margin_left = 315.0
+margin_top = 234.0
+margin_right = 428.0
+margin_bottom = 273.0
+custom_fonts/font = SubResource( 2 )
+text = "Usuário:"
+align = 2
+valign = 1
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="label_password" type="Label" parent="."]
+margin_left = 316.0
+margin_top = 312.0
+margin_right = 429.0
+margin_bottom = 343.0
+custom_fonts/font = SubResource( 2 )
+text = "Senha:"
+align = 2
+valign = 1
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="bt_entrar" type="Button" parent="."]
+margin_left = 452.423
+margin_top = 396.411
+margin_right = 607.423
+margin_bottom = 424.411
+focus_mode = 0
+custom_fonts/font = SubResource( 4 )
+text = "Prosseguir"
+flat = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="bt_novo" type="Button" parent="."]
+margin_left = 637.0
+margin_top = 396.0
+margin_right = 710.0
+margin_bottom = 424.0
+hint_tooltip = "Funcionalidade ainda não habilitada"
+custom_fonts/font = SubResource( 4 )
+text = "Novo"
+flat = true
+align = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="user" type="TextEdit" parent="."]
+margin_left = 451.252
+margin_top = 237.236
+margin_right = 712.252
+margin_bottom = 268.236
+hint_tooltip = "Informe o nome do usuário"
+custom_fonts/font = SubResource( 3 )
+custom_constants/line_spacing = 4
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="password" type="TextEdit" parent="."]
+margin_left = 452.252
+margin_top = 311.344
+margin_right = 713.252
+margin_bottom = 342.344
+hint_tooltip = "Informe a senha do usuário"
+custom_fonts/font = SubResource( 3 )
+custom_constants/line_spacing = 4
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HTTPRequest" type="HTTPRequest" parent="."]
+
+[node name="mensagem" type="Label" parent="."]
+modulate = Color( 1, 0, 0, 1 )
+margin_left = 453.0
+margin_top = 355.0
+margin_right = 712.0
+margin_bottom = 384.0
+custom_fonts/font = SubResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="pressed" from="bt_entrar" to="." method="_on_bt_entrar_pressed"]
+[connection signal="request_completed" from="HTTPRequest" to="." method="_on_HTTPRequest_request_completed"]
