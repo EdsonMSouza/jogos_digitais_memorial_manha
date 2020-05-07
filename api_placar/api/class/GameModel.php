@@ -63,7 +63,7 @@ class GameModel
                     ON games.user_id = users.id 
                     GROUP BY users.name 
                     HAVING Score > 0 
-                    ORDER BY games.score DESC';
+                    ORDER BY Score DESC';
 
             $stmt = self::$pdo->prepare($sql);
             $stmt->execute();
@@ -86,22 +86,15 @@ class GameModel
                     ON games.user_id = users.id 
                     WHERE games.user_id = :userId 
                     HAVING Score > 0 
-                    ORDER BY games.score DESC";
+                    ORDER BY Score DESC";
 
             $stmt = self::$pdo->prepare($sql);
             $stmt->bindValue(":userId", $userId, \PDO::PARAM_INT);
             $stmt->execute();
 
-            return $stmt->fetchAll(\PDO::FETCH_OBJ);
+            return $stmt->fetchAll(\PDO::FETCH_ASSOC);
         } catch (PDOException $ex) {
             throw $ex;
         }
-    }
-
-    /**
-     * Ranking por jogador
-     */
-    function rankingByUser($idUser)
-    {
     }
 }
