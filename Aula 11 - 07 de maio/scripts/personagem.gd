@@ -45,8 +45,13 @@ func _on_Area2D_body_entered(body):
 	
 	# Segue uma condição para finalizar (Ganhou ou Morreu)
 	if(contador > 2):
+		# remove a Sprite do ambiente
+		# Deve também remover o StaticBody
+		
+		alert(Global.user_name + ", " + "você morreu\n\nO 'score' do jogo foi salvo via API", "Aviso")
+
 		var data_to_send = {
-			"type":"save",		
+			"type":"save",
 			"game_id":Global.game_id,
 			"score":50
 			}		
@@ -61,9 +66,8 @@ func _on_Area2D_body_entered(body):
 # resposta da requisição da API
 func _on_HTTPRequest_request_completed(result, response_code, headers, body):
 	var json = JSON.parse(body.get_string_from_utf8())
-	alert(Global.user_name + ", " + "você morreu\n\nO 'score' do jogo foi salvo via API", "Aviso")
-	#if get_node("dialog").is_visible():
-	#	get_tree().change_scene("res://scenes/painel_jogo.tscn")
+	#alert(Global.user_name + ", " + "você morreu\n\nO 'score' do jogo foi salvo via API", "Aviso")
+	#alert(Global.user_name + " você morreu/ganhou.", json.result['value'])
 
 # carrega o Painel do Jogo
 func _on_gameover_confirmed():

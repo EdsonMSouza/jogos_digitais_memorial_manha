@@ -12,11 +12,11 @@ size = 20
 extra_spacing_bottom = -3
 font_data = ExtResource( 2 )
 
-[sub_resource type="DynamicFont" id=4]
+[sub_resource type="DynamicFont" id=3]
 size = 20
 font_data = ExtResource( 2 )
 
-[sub_resource type="DynamicFont" id=3]
+[sub_resource type="DynamicFont" id=4]
 size = 20
 extra_spacing_top = 2
 font_data = ExtResource( 2 )
@@ -82,7 +82,7 @@ margin_top = 396.411
 margin_right = 607.423
 margin_bottom = 424.411
 focus_mode = 0
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = SubResource( 3 )
 text = "Prosseguir"
 flat = true
 __meta__ = {
@@ -95,7 +95,7 @@ margin_top = 396.0
 margin_right = 710.0
 margin_bottom = 424.0
 hint_tooltip = "Funcionalidade ainda não habilitada"
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = SubResource( 3 )
 text = "Novo"
 flat = true
 align = 2
@@ -109,7 +109,7 @@ margin_top = 237.236
 margin_right = 712.252
 margin_bottom = 268.236
 hint_tooltip = "Informe o nome do usuário"
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 4 )
 custom_constants/line_spacing = 4
 __meta__ = {
 "_edit_use_anchors_": false
@@ -121,7 +121,7 @@ margin_top = 311.344
 margin_right = 713.252
 margin_bottom = 342.344
 hint_tooltip = "Informe a senha do usuário"
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 4 )
 custom_constants/line_spacing = 4
 __meta__ = {
 "_edit_use_anchors_": false

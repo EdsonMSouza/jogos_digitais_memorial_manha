@@ -48,3 +48,12 @@ static func logout():
 	var dir = Directory.new()
 	var err = dir.remove(USER_DATA)
 	
+
+
+
+
+
+
+
+
+
