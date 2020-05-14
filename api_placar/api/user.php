@@ -1,10 +1,21 @@
 <?php
 
-# cabeçalho da página para receber requisições do tipo JSON
-# Especificação CORS (AUTH0)
-header("Access-Control-Allow-Origin: *"); // libera tudo
+// Permite acesso de qualquer origem (requisição)
+if (isset($_SERVER['HTTP_ORIGIN'])) {
+    header("Access-Control-Allow-Origin: {$_SERVER['HTTP_ORIGIN']}");
+    header('Access-Control-Allow-Credentials: true');
+    header('Access-Control-Max-Age: 8640000');    // cache for 100 days
+}
 
-# tipo do cabeçalho
+// Controle e Acesso para os cabeçalhos recebidos durante a requisição
+if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
+    if (isset($_SERVER['HTTP_ACCESS_CONTROL_REQUEST_METHOD']))
+        header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
+    if (isset($_SERVER['HTTP_ACCESS_CONTROL_REQUEST_HEADERS']))
+        header("Access-Control-Allow-Headers: {$_SERVER['HTTP_ACCESS_CONTROL_REQUEST_HEADERS']}");
+}
+
+# Configura o cabeçalho para requisições JSON
 header("Content-Type: application/json; charset=utf-8");
 
 # recupera as informações enviadas via serviço
