@@ -57,7 +57,7 @@ class GameModel
     function rankingGeneral()
     {
         try {
-            $sql = 'SELECT users.user AS User, sum(games.score) AS Score
+            $sql = 'SELECT users.user AS User, max(games.score) AS Score
                     FROM games 
                     INNER JOIN users 
                     ON games.user_id = users.id 
